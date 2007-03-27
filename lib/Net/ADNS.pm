@@ -6,7 +6,7 @@ use warnings;
 # code below goes inside a BEGIN block to make constants defined from
 # XS available for the rest of the code
 BEGIN {
-    our $VERSION = '0.01';
+    our $VERSION = '0.02';
 
     require XSLoader;
     XSLoader::load('Net::ADNS', $VERSION);

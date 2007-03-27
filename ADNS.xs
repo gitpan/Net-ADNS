@@ -195,6 +195,7 @@ answer_sv_query(pTHX_ SV *sv, adns_answer *answer) {
 }
 
 MODULE = Net::ADNS		PACKAGE = Net::ADNS		PREFIX = adns_
+PROTOTYPES: DISABLE
 
 BOOT:
 adns_query_stash = gv_stashsv(newSVpv("Net::ADNS::Query", 0), 1);

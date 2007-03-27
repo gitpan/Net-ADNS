@@ -1,6 +1,9 @@
 Revision history for Perl extension Net::ADNS.
 
-0.01  Fri Mar 23 12:29:08 2007
+0.02  Mar 27, 2007
+        - missing files added to manifest
+
+0.01  Mar 23 12:29:08 2007
 	- original version; created by h2xs 1.23 with options
 		-AOn Net::ADNS /usr/include/adns.h
 
