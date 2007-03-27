@@ -381,14 +381,16 @@ adns_before_select(self)
     adns_state self;
 PREINIT:
     fd_set rfds, wfds, efds;
-    int maxfd;
+    int maxfd = 0;
     struct timeval *tv_mod = 0;
     struct timeval tv_buf, now;
 PPCODE:
+    FD_ZERO(&rfds); FD_ZERO(&wfds); FD_ZERO(&efds);
     gettimeofday(&now, NULL);
     adns_beforeselect(self,
                       &maxfd, &rfds, &wfds, &efds,
                       &tv_mod, &tv_buf, &now);
+    /* fprintf(stderr, "maxfd: %d\n", maxfd); fflush(stderr); */
     XPUSHs(sv_2mortal(_fd_set2sv(aTHX_ &rfds, maxfd)));
     XPUSHs(sv_2mortal(_fd_set2sv(aTHX_ &wfds, maxfd)));
     XPUSHs(sv_2mortal(_fd_set2sv(aTHX_ &efds, maxfd)));

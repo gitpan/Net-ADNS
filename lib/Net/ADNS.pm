@@ -6,7 +6,7 @@ use warnings;
 # code below goes inside a BEGIN block to make constants defined from
 # XS available for the rest of the code
 BEGIN {
-    our $VERSION = '0.02';
+    our $VERSION = '0.03';
 
     require XSLoader;
     XSLoader::load('Net::ADNS', $VERSION);
@@ -49,8 +49,8 @@ Net::ADNS - Perl wrapper for the Asynchronous DNS client library
 
 From the adns library web site:
 
-  Advanced, easy to use, asynchronous-capable DNS client library and
-  utilities.
+  ADNS: Advanced, easy to use, asynchronous-capable DNS client library
+  and utilities.
 
   In contrast with the standard interfaces, gethostbyname et al and
   libresolv, it has the following features:
@@ -94,7 +94,7 @@ From the adns library web site:
 
 =head2 CONSTANTS
 
-All the constants defined on the C library can be exported from this
+All the constants defined on the C library can be imported from this
 module (with uppercased names!):
 
   ADNS_IF_CHECKC_ENTEX, ADNS_IF_CHECKC_FREQ, ADNS_IF_DEBUG,
@@ -210,6 +210,10 @@ any method call.
 Similar to check but waits for the response to arrive or for the query
 to timeout.
 
+=item $adns->cancel($query)
+
+Cancels a pending query.
+
 =item $adns->open_queries()
 
 Returns all the queries that have not been yet successfully waited,
@@ -224,7 +228,7 @@ flag ADNS_IF_NOAUTOSYS is used on the constructor.
 
 =item $adns->first_timeout()
 
-Returns the time remaining until any of the pending queries times out.
+Returns the time remaining until the first pending query times out.
 
 =item ($read, $write, $excep, $timeout) = $adns->before_select()
 
@@ -263,10 +267,10 @@ Calling this method is usually not required.
 
 This is a very early release, expect bugs on it.
 
-To send bug reports, use the RT system at http://rt.perl.org or send
+To send bug reports, use the RT system at http://rt.cpan.org or send
 my an email (or do both!).
 
-Also, I visit L<PerlMonks|http://perlmonks.org> almost daily and will
+Also, I visit L<PerlMonks|http://perlmonks.org/> almost daily and will
 try to solve problems related to this module posted there.
 
 =head1 SEE ALSO
